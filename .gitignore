@@ -1,0 +1,9 @@
+*.out
+*.lib
+*.o
+**/build
+**/Debug
+**/Release
+*.llvm
+*~
+.vscode
