@@ -1,4 +1,4 @@
-package LeCompiler.LeLanguage;
+package LeCompiler;
 
 class Token {
     final TokenType type;

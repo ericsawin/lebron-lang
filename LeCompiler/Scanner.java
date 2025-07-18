@@ -1,11 +1,13 @@
-package LeCompiler.LeLanguage;
+package LeCompiler;
+
+import static LeCompiler.TokenType.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static LeCompiler.LeLanguage.TokenType.*;
+
 
 
 class Scanner {
@@ -16,6 +18,27 @@ class Scanner {
     private int current;
     private int line = 1;
 
+    private static final Map<String, TokenType> keywords;
+
+    static {
+        keywords = new HashMap<>();
+        keywords.put("and", AND);
+        keywords.put("LeClass", LECLASS);
+        keywords.put("else", ELSE);
+        keywords.put("LeFalse", LEFALSE);
+        keywords.put("goat", GOAT);
+        keywords.put("FUN", FUN);
+        keywords.put("if", IF);
+        keywords.put("or", OR);
+        keywords.put("LePrint", LEPRINT);
+        keywords.put("TheReturn", THERETURN);
+        keywords.put("gloriousking", GLORIOUSKING);
+        keywords.put("this", THIS);
+        keywords.put("LeTrue", LETRUE);
+        keywords.put("LeVariable", LEVARIABLE);
+        keywords.put("LeWhile", LEWHILE);
+    }
+
     Scanner(String source) {
         this.source = source;
     }
@@ -24,9 +47,10 @@ class Scanner {
         while (!isAtEnd()) {
             start = current;
             scanToken();
-            tokens.add(new Token(EOF, "", null, line));
-            return tokens;
+            
         }
+        tokens.add(new Token(EOF, "", null, line));
+        return tokens;
     }
 
      private void scanToken() {
@@ -91,7 +115,10 @@ class Scanner {
     private void identifier() {
         while (isAlphaNumeric(peek())) advance();
 
-        addToken(IDENTIFIER);
+        String text = source.substring(start, current);
+        TokenType type = keywords.get(text);
+        if (type == null) type = IDENTIFIER;
+        addToken(type);
     }
 
     private void number() {

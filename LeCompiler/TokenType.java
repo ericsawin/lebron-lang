@@ -1,4 +1,4 @@
-package LeCompiler.LeLanguage;
+package LeCompiler;
 
 enum TokenType {
     // Single-character tokens.
@@ -15,8 +15,8 @@ enum TokenType {
     IDENTIFIER, STRING, NUMBER,
 
     // Keywords.
-    AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR,
-    PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
+    AND, LECLASS, ELSE, LEFALSE, FUN, GOAT, IF, NIL, OR,
+    LEPRINT, THERETURN, GLORIOUSKING, THIS, LETRUE, LEVARIABLE, LEWHILE,
 
     EOF
 }
